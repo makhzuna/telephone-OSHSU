@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Filter_num = () => {
+const FilterNum = () => {
     return (
         <>
             
@@ -8,4 +8,4 @@ const Filter_num = () => {
     );
 };
 
-export default Filter_num;
+export default FilterNum;

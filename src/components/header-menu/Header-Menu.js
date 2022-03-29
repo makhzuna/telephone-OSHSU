@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap';
 
-const Header_Menu = ({ admin, adminReg }) => {
+const HeaderMenu = ({ admin, adminReg, logout  }) => {
+    
     return (
         <>
             {adminReg === false ? <div className='header'>
@@ -21,7 +22,7 @@ const Header_Menu = ({ admin, adminReg }) => {
                         src="https://yt3.ggpht.com/a/AATXAJzj6YzY8DsguQggorf0VqXPd_pqMkJkX6MmpKTk=s900-c-k-c0x00ffffff-no-rj"
                         alt="" />
                 </div>
-                <button onClick={admin} className='btn text-light button admin-btn'>Выход</button>
+                <button onClick={logout} className='btn text-light button admin-btn'>Выход</button>
             </div>
 
             }
@@ -29,4 +30,4 @@ const Header_Menu = ({ admin, adminReg }) => {
     );
 };
 
-export default Header_Menu;
+export default HeaderMenu;

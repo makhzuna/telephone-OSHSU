@@ -75,7 +75,7 @@ html{
     rgb(17, 61, 90));
   padding: 20px;
   width: 600px;
-  margin: 100px auto;
+  margin:  auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -114,7 +114,7 @@ html{
   /* position: absolute; 
   left: 33.5%;
   top: -10%; */
-  margin: auto;
+  margin: 0 auto;
 }
 .admin-container{
   position: relative;
@@ -138,9 +138,11 @@ html{
   padding: 0 20px;
 }
 .admin-search{
+  background: rgba(189, 193, 194, 0.521);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
+  justify-content: end;
+  align-items: center;
+  padding: 120px 0;
 
 }
