@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import Header_Menu from '../../components/header-menu/header-menu';
+import Header_Menu from '../../components/header/header-menu';
 import Searc_Panel from '../../components/search-panel/search-panel';
 import Footer from '../../components/footer/Footer';
 import Admin from '../admin/Admin';
 import Admin_reg from '../admin-reg/Admin-reg';
 import { ToastContainer, toast } from 'react-toastify';
 import students from '../../server/data-contact/contact-student'
+import fac from '../../server/faculity/faculity';
+import data from '../../server/data/data';
 
 import { useForm } from 'react-hook-form';
 const Main = (props) => {
-    const [auth, setAuth] = useState(true)
+    const [auth, setAuth] = useState(false)
     const [adminReg, setAdminReg] = useState(false);
     const [loading, setLoading] = useState(false)
     const [studNum, setStudNum] = useState(students)
@@ -63,22 +65,20 @@ const Main = (props) => {
         <>
 
             {adminReg === true ?
-                <div className=''>
+                <div className='bg-light'>
                     <Header_Menu admin={signAdmin} adminReg={adminReg} logout={logout} />
-                    <div className='d-flex'>
-                        <div className='w-50 admin-search'>
-                            <Admin_reg />
+                    <div className=''>
+                        <div className='w-100 admin-search'>
+                            <Admin_reg onSub={onSub} h1={h1} fac={fac} data={data} />
                         </div>
-                        <div className='w-50 admin-search'>
-                            <Searc_Panel  onSub={onSub} h1={h1}/>
-                        </div>
+                        
                         <Footer />
                     </div>
                 </div>
                 :
                 <div className='block'>
                     <Header_Menu admin={signAdmin} adminReg={adminReg} />
-                    <Searc_Panel onSub={onSub} h1={h1}/>
+                    <Searc_Panel onSub={onSub} h1={h1} fac={fac} data={data}/>
                     <Admin loading={loading} auth={auth} exitAdmin={exitAdmin} handleSub={handleSub} />
                     <Footer />
                 </div>

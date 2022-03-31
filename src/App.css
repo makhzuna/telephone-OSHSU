@@ -4,7 +4,17 @@ html{
 .block{
   width: 100%;
 }
-
+.hr{
+  width: 100%;
+  height: 1px;
+  margin: 20px 0;
+  background:  linear-gradient(
+    90deg, white, 
+    rgb(133, 200, 245), 
+    rgb(149, 205, 243), 
+    rgb(159, 188, 207), 
+    rgb(255, 255, 255));
+}
 
 .header{
   display: flex;
@@ -20,33 +30,26 @@ html{
     rgb(17, 61, 90));
     padding: 10px 0;
 }
-.footer{
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-}
-.footer> .container{
-  display: flex;
-  justify-content: end;
-}
-.container{
-  background: none;
-}
 
 .header-logo{
-  width: 80px;
+  width: 300px;
 }
-.header-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.search-menu{
+.logo-box{
   width: 100%;
   display: flex;
-  justify-content: space-around;
-  padding: 10px 0;
-  margin: 10px 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; 
+}
+.tel-icon{
+  width: 70px;
+}
+.header-title{
+  font-size: 40px;
+  color: white;
+  font-weight: bold;
+  font-family: serif;
+  margin: 0 20px;
 }
 .admin-btn{
   width: 150px;
@@ -55,44 +58,91 @@ html{
   position: absolute;
   right: 10px;
 }
-.search-span{
-  font-weight: bold;
-  font-size: 25px;
-  color: rgb(0, 183, 255);
-  transition: 0.3s;
-  margin: 10px;
+.header-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.search-span:hover{
-  color: rgb(37, 78, 94);
-  text-shadow: 0 0 5px 0 rgb(22, 22, 26);
-  cursor: pointer;
+.search-container{
+  width: 100%;
+  padding: 10px 0;
+  margin: 10px 0;
 }
+.search-menu{
+  width: 100%;
+}
+.search-menu> ul{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+.search-menu> ul>li{
+  width: 100%;
+  margin: 5px;
+  padding: 10px;
+  color: white;
+}
+.fac-container{
+  display: flex;
+  flex-direction: column;
+}
+.faculity{
+  width: 50%;
+  height: 5vh;
+  outline: none;
+  border-radius: 5px;
+  border-color: rgb(101, 158, 175);
+  box-shadow: 3px 3px 5px 0 rgb(63, 102, 107);
+  padding: 5px;
+  margin: 15px;
+  transition: 0.2s;
+}
+.faculity:hover{
+  background: linear-gradient(
+    rgb(234, 245, 248),
+    rgb(255, 255, 255),
+    rgb(227, 241, 247));
+    box-shadow: 3px 3px 5px 0 rgb(158, 191, 196);
+}
+
+
 .search-panel{
   box-shadow: 0 0 25px 5px rgb(20, 62, 82);
   background: linear-gradient(
     130deg, rgb(31, 97, 141), 
     rgb(54, 130, 180), 
     rgb(17, 61, 90));
-  padding: 20px;
-  width: 600px;
-  margin:  auto;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 1em;
+  padding: 20px;
+  margin: 0 auto 50px;
 }
-
-.search-panel> input{ 
+.search-box{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: relative;
+}
+.form-control{ 
+  width: 80%;
+  height: 8vh;
   box-shadow: 0 0 10px 0 rgb(26, 96, 126);
-  font-size: 25px;
+  font-size: 15px;
   transition: 0.2s;
 }
 .search-btn{
-  width: 50%;
+  width: 25%;
   display: flex;
   justify-content: space-around;
 }
 .search-btn>.button{
+  width: 100%;
+  height: 8vh;
+  margin: 10px;
   width: 150px;
 }
 .btn{
@@ -106,14 +156,11 @@ html{
     rgb(51, 90, 116));
   transition: 0.2s;
 }
-.btn:hover, .search-panel> input:hover{
+.btn:hover, .form-control:hover{
   box-shadow: 0 0 10px 0 black;
 }
 
 .admin-sign{
-  /* position: absolute; 
-  left: 33.5%;
-  top: -10%; */
   margin: 0 auto;
 }
 .admin-container{
@@ -137,12 +184,45 @@ html{
   font-size: 50px;
   padding: 0 20px;
 }
+.sign-admin-panel{
+  width: 350px;
+  position: relative;
+}
+.auth-admin>span{
+  position: absolute;
+}
+
+.auth-admin{
+  width: 100%;
+  height: 8vh;
+  margin: 10px 0;
+}
+.auth-admin> input, .sign-admin-panel>button{
+  height: 5vh;
+  display: flex;
+  align-items: center;
+}
 .admin-search{
-  background: rgba(189, 193, 194, 0.521);
   display: flex;
   flex-direction: column;
   justify-content: end;
   align-items: center;
   padding: 120px 0;
 
+}
+
+/* .reg-panel{
+  
+}
+.registe{
+  display: flex;
+}
+.register{
+  width: 500px;
+} */
+
+/* footer */
+.footer> .container{
+  display: flex;
+  justify-content: end;
 }
