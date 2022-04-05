@@ -1,7 +1,7 @@
 const data = [
+    {type:'rank',search:'По работу'},
+    {type:'lastname',search:'По фамилию'},
     {type:'name',search:'По имя'},
-    {type:'surname',search:'По фамилию'},
-    {type:'adress',search:'По адресу'},
-    {type:'contact',search:'По номеру'},
+    // {type:'adress',search:'По адресу'},
 ];
 export default data;

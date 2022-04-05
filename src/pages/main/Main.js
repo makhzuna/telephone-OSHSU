@@ -7,17 +7,33 @@ import Footer from '../../components/footer/Footer';
 import Admin from '../admin/Admin';
 import Admin_reg from '../admin-reg/Admin-reg';
 import { ToastContainer, toast } from 'react-toastify';
-import students from '../../server/data-contact/contact-student'
 import fac from '../../server/faculity/faculity';
 import data from '../../server/data/data';
+import cafedra from '../../server/cafedra/cafedra.json';
+import dataMit from '../../server/data-mit/data-mit.json'
 
 import { useForm } from 'react-hook-form';
 const Main = (props) => {
     const [auth, setAuth] = useState(false)
     const [adminReg, setAdminReg] = useState(false);
     const [loading, setLoading] = useState(false)
-    const [studNum, setStudNum] = useState(students)
     const [h1, setH1] = useState([])
+    const [sType, setType] = useState('name')
+    // const [posle, setPosle] = useState([])
+    const [resultSearch, setResult] = useState([])
+
+
+    const changeFaculity = (e) => {
+        // console.log(e.target.value)
+        const newFac = fac.filter(elem => elem.fac === e.target.value)
+        console.log(newFac[0].id)
+    }
+    const searchType = (type) => {
+        setType(type)
+    }
+
+
+
 
     const signAdmin = () => {
         setAuth(!auth)
@@ -29,7 +45,6 @@ const Main = (props) => {
 
     const handleSub = (state) => {
         setLoading(true)
-        // console.log(state.login, state.password)
         if (state.login === 'users' && state.password === '12345678') {
             setTimeout(() => {
                 setAdminReg(!adminReg)
@@ -40,7 +55,7 @@ const Main = (props) => {
             }, 3000)
         } else {
             setAdminReg(adminReg)
-            console.log(adminReg)
+            // console.log(adminReg)
             toast.warning('error')
         }
     }
@@ -49,18 +64,24 @@ const Main = (props) => {
         setAdminReg(!adminReg)
     }
 
-    const onSub =(data)=>{
-        // console.log(data)
-        // console.log(students)
-        if(data.name==='' && data.lastName==='' && data.studContact===''){
-            toast.warning('Попольните хотья бы одного!!!')
-        };
-        const newArr = students.filter(e=> e.aty===data.name )
-
-        setH1([...newArr])
-        
-
+    const onSub = (data) => {
+        console.log("search ", data)
+        console.log("data info ", dataMit.dataMit)
+        const result = dataMit.dataMit.filter(e => {
+            if (data.name) {
+                if (data.name === e.name) {
+                    return e.name.toLowerCase().indexOf(data.name.toLowerCase()) > -1
+                }
+            } else if (data.lastname) {
+                return e.lastname.toLowerCase().indexOf(data.lastname.toLowerCase()) > -1
+            } else if (data.rank) {
+                return e.rank.toLowerCase().indexOf(data.rank.toLowerCase()) > -1
+            }
+        })
+        setResult([...result])
     }
+    console.log("output ", resultSearch)
+
     return (
         <>
 
@@ -69,21 +90,34 @@ const Main = (props) => {
                     <Header_Menu admin={signAdmin} adminReg={adminReg} logout={logout} />
                     <div className=''>
                         <div className='w-100 admin-search'>
-                            <Admin_reg onSub={onSub} h1={h1} fac={fac} data={data} />
+                            <Admin_reg
+                                onSub={onSub}
+                                h1={h1}
+                                fac={fac}
+                                data={data}
+                                cafedra={cafedra.cafedra} />
                         </div>
-                        
+
                         <Footer />
                     </div>
                 </div>
                 :
                 <div className='block'>
                     <Header_Menu admin={signAdmin} adminReg={adminReg} />
-                    <Searc_Panel onSub={onSub} h1={h1} fac={fac} data={data}/>
+                    <Searc_Panel
+                        onSub={onSub}
+                        h1={h1}
+                        fac={fac}
+                        data={data}
+                        changeFaculity={changeFaculity}
+                        searchType={searchType}
+                        type={sType} 
+                        resultSearch={resultSearch}/>
                     <Admin loading={loading} auth={auth} exitAdmin={exitAdmin} handleSub={handleSub} />
                     <Footer />
                 </div>
             }
-            <ToastContainer position='bottom-center'/>
+            <ToastContainer position='bottom-center' />
         </>
     );
 };

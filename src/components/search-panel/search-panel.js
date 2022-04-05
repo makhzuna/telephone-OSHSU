@@ -3,7 +3,7 @@ import { Toastify } from 'react-toastify';
 import { Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 
-const Searc_Panel = ({ onSub, h1, fac, data }) => {
+const Searc_Panel = ({ onSub, h1, fac, data, changeFaculity, searchType, type, resultSearch }) => {
 
     const { handleSubmit, register, formState: { errors }, reset } = useForm({
         // mode: 'onFocus'
@@ -12,14 +12,15 @@ const Searc_Panel = ({ onSub, h1, fac, data }) => {
         onSub(data)
         reset()
     }
-    const rese = (data) => {
+    const rese = () => {
         reset()
     }
 
-    console.log(h1)
+    // console.log(h1)
     return (
         <>
             <div className="search-container ">
+
                 <div className='container'>
                     <h2>Советы по использованию</h2>
                     <div>
@@ -34,19 +35,15 @@ const Searc_Panel = ({ onSub, h1, fac, data }) => {
                     </div>
                     <div className='hr'></div>
                 </div>
+
                 <div className="container fac-container">
                     <label htmlFor="">Выберите факультеть</label>
-                    <select name="" id="" className='faculity'>
-                        <option value="teacher">Преподователь</option>
-                        <option value="student">Студент</option>
-                    </select>
-                    <label htmlFor="">Выберите факультеть</label>
-                    <select name="" id="" className='faculity'>
+                    <select name="" id=""
+                        onChange={changeFaculity}
+                        className='faculity'>
                         {fac.map((elem, index) => {
                             return (
-                                <>
-                                    <option value={elem.type}>{elem.fac}</option>
-                                </>
+                                <option key={index} id={elem.id} value={elem.type}>{elem.fac}</option>
                             )
                         })}
                     </select>
@@ -56,11 +53,14 @@ const Searc_Panel = ({ onSub, h1, fac, data }) => {
                 <div className='search-menu container'>
                     <ul>
                         {data.map((elem, index) => {
-                            console.log(elem.search)
+                            // console.log(elem.search)
                             return (
-                                <>
-                                    <li className='faculity btn'>{elem.search}</li>
-                                </>
+                                <li
+                                    key={index}
+                                    onClick={() => searchType(elem.type)}
+                                    className='faculity btn'>
+                                    {elem.search}
+                                </li>
                             )
                         })}
                     </ul>
@@ -72,38 +72,49 @@ const Searc_Panel = ({ onSub, h1, fac, data }) => {
                 <div className='search-panel container'>
                     <h2 className='text-light '>Тип поиска:</h2>
                     <div className='search-box'>
+                        {console.log('state ', type)}
                         <input
                             {
-                            ...register('name', {
+                            ...register(type, {
                                 required: false,
-                                // minLength: {
-                                //     value: 0,
-                                //     message: "Минимум 8 символ"
-                                // }
+                                minLength: {
+                                    value: 0,
+                                    message: "Минимум 8 символ"
+                                }
                             })}
                             type='text'
                             className="form-control "
-                            placeholder='Имя' />
-                        {/* {errors?.name && <span>
-                        {errors.name.message = 'поле обьзятельно к заполнению'}
-                    </span>} */}
+                            placeholder={type} />
+                        {errors?.type && <span>
+                            {errors.type.message = 'поле обьзятельно к заполнению'}
+                        </span>}
                     </div>
                     <p></p>
                     <div className='container'>
                         <div className='hr'></div>
 
                         <div className='text-light'>
-                            <h2>Советы по использованию</h2>
+                            <h2>Советы по использованию:</h2>
                             <ul>
-                                <li><p>Для осуществления поиска необходимо:</p> <ol>
-                                    <li>выбрать населенный пункт из списка,</li>
-                                    <li>выбрать необходимый тип поиска,</li>
-                                    <li>заполнить поля поиска согласно выводимой подсказке.</li>
-                                </ol></li>
-                                <li><p>Если вы все равно не можете найти информацию по требуемому абоненту, значит такого абонента не существует.</p></li>
+                                {type === 'lastname' ?
+                                    <li>Фамилию абонента необходимо вводить полностью, без ошибок (инициалы можно опустить).</li>
+                                    :
+                                    type === 'name' ? <li>Имя абонента необходимо вводить полностью, без ошибок (инициалы можно опустить).</li>
+                                        :
+                                        <li>Напишите хотя бы одно слово</li>}
+
+                                {/* <li><p>Для осуществления поиска необходимо:</p>
+                                    <ol>
+                                        <li>выбрать населенный пункт из списка,</li>
+                                        <li>выбрать необходимый тип поиска,</li>
+                                        <li>заполнить поля поиска согласно выводимой подсказке.</li>
+                                    </ol>
+                                </li>
+                                <li><p>Если вы все равно не можете найти информацию по требуемому абоненту, значит такого абонента не существует.</p></li> */}
                             </ul>
                         </div>
                         <div className='hr'></div>
+
                     </div>
                     <div className='search-btn'>
                         <button type='submit' className='btn text-light button'>Искать</button>
@@ -116,8 +127,33 @@ const Searc_Panel = ({ onSub, h1, fac, data }) => {
                             className='btn text-light button'
                         >Сбросить</span>
                     </div>
+
+                    {resultSearch.map((elem, index) => {
+                        return (<>
+                            <div className='search-result text-light'>
+                                <h4>Результат</h4>
+                                <ul>
+                                    {/* <li>{fac.map((e, inx)=>{
+                                    const rnk = e.id===elem.id-fac
+                                    return(<>
+                                    <li>{rnk}</li>
+                                    </>)
+                                })}</li> */}
+                                    {elem.rank!=''?<li>{elem.rank}</li>:''}
+                                    {elem.lastname!=''?<li>{elem.lastname}</li>:''}
+                                    {elem.name!=''?<li>{elem.name}</li>:''}
+                                    {elem.surname!=''?<li>{elem.surname}</li>:''}
+                                    {elem.phone!=''?<li>{elem.phone}</li>:''}
+                                    {elem.mobile!=''?<li>{elem.mobile}</li>:''}
+                                    {elem.sotcial!=''?<li>{elem.sotcial}</li>:''}
+                                </ul>
+                            </div>
+                        </>)
+                    })}
+                    <div className="hr"></div>
                 </div>
             </form>
+
             <div className='container'>
                 {h1.map((e, i) => {
                     return (
