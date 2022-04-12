@@ -25,11 +25,10 @@ const Admin_reg = ({ onSub, h1, fac, data, cafedra }) => {
                 <div className='hr'></div>
             </div>
 
-            <div className=' container'>
+            <div className=' container '>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <ul className='container'>
-                        <div className='registe container'>
-                            <div className="container fac-container">
+                    <ul className='container admin-reg'>
+                    <div className="container fac-container">
                                 <label htmlFor="">Выберите факультеть</label>
                                 <select name="" id=""
                                     {
@@ -77,6 +76,8 @@ const Admin_reg = ({ onSub, h1, fac, data, cafedra }) => {
                                 </span>}
                                 <div className='hr'></div>
                             </div>
+                        <div className='registe container'>
+                            
                             
                             {/* <div className='search-panel w-50 container'>
                                 <input
@@ -108,7 +109,7 @@ const Admin_reg = ({ onSub, h1, fac, data, cafedra }) => {
                                     })}
                                     type='text'
                                     className="form-control"
-                                    placeholder='Имя'
+                                    placeholder='rank'
                                 />
                                 {errors?.rank && <span>
                                     {errors.rank.message = 'поле обьзятельно к заполнению'}
@@ -126,7 +127,7 @@ const Admin_reg = ({ onSub, h1, fac, data, cafedra }) => {
                                     })}
                                     type='text'
                                     className="form-control"
-                                    placeholder='Имя'
+                                    placeholder='lastname'
                                 />
                                 {errors?.lastname && <span>
                                     {errors.lastname.message = 'поле обьзятельно к заполнению'}
@@ -144,7 +145,7 @@ const Admin_reg = ({ onSub, h1, fac, data, cafedra }) => {
                                     })}
                                     type='text'
                                     className="form-control"
-                                    placeholder='Имя'
+                                    placeholder='name'
                                 />
                                 {errors?.name && <span>
                                     {errors.name.message = 'поле обьзятельно к заполнению'}
@@ -162,7 +163,7 @@ const Admin_reg = ({ onSub, h1, fac, data, cafedra }) => {
                                     })}
                                     type='text'
                                     className="form-control"
-                                    placeholder='Имя'
+                                    placeholder='surname'
                                 />
                                 {errors?.surname && <span>
                                     {errors.surname.message = 'поле обьзятельно к заполнению'}
@@ -180,7 +181,7 @@ const Admin_reg = ({ onSub, h1, fac, data, cafedra }) => {
                                     })}
                                     type='text'
                                     className="form-control"
-                                    placeholder='Имя'
+                                    placeholder='phone'
                                 />
                                 {errors?.phone && <span>
                                     {errors.phone.message = 'поле обьзятельно к заполнению'}
@@ -198,7 +199,7 @@ const Admin_reg = ({ onSub, h1, fac, data, cafedra }) => {
                                     })}
                                     type='text'
                                     className="form-control"
-                                    placeholder='Имя'
+                                    placeholder='mobile'
                                 />
                                 {errors?.mobile && <span>
                                     {errors.mobile.message = 'поле обьзятельно к заполнению'}
@@ -216,18 +217,18 @@ const Admin_reg = ({ onSub, h1, fac, data, cafedra }) => {
                                     })}
                                     type='text'
                                     className="form-control"
-                                    placeholder='Имя'
+                                    placeholder='sotcial'
                                 />
                                 {errors?.sotcial && <span>
                                     {errors.sotcial.message = 'поле обьзятельно к заполнению'}
                                 </span>}
                             </div>
 
-                        </div>)
+                        </div>
                         {/* })} */}
                     </ul>
-                    <div className='search-btn'>
-                        <button type='submit' className='btn text-light button'>Искать</button>
+                    <div className='search-btn search-btn-reg container'>
+                        <button type='submit' className='btn text-light button'>Добавить</button>
                         <span style={{
                             display: 'flex',
                             alignItems: 'center',

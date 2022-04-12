@@ -216,16 +216,30 @@ html{
   background: rgba(2, 48, 59, 0.356);
 }
 
+.admin-reg{
+  /* display: flex; */
+  flex-direction: column;
+}
+
   
 .registe{
+  /* display: flex; */
+  /* flex-direction: column; */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+}
+.search-btn-reg{
   display: flex;
+  justify-content: center;
 }
 .register{
   width: 500px;
-} */
+} 
 
 /* footer */
 .footer> .container{
   display: flex;
   justify-content: end;
 }
+
